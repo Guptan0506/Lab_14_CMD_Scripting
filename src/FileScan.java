@@ -3,23 +3,24 @@ import java.io.File;
 
 public class FileScan {
     public static void main(String[] args) {
-        String fileName;
+        File file;
+
         if (args.length > 0) {
-            fileName = args[0];
+            file = new File(args[0]);
         } else {
             JFileChooser fileChooser = new JFileChooser();
-            int result = fileChooser.showOpenDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                fileName = selectedFile.getAbsolutePath();
+            int returnValue = fileChooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                file = fileChooser.getSelectedFile();
             } else {
                 System.out.println("No file selected. Exiting...");
                 return;
             }
         }
+    }
 
-        // Now you can use fileName for further processing
-        System.out.println("File to scan: " + fileName);
-        // Add your file scanning logic here
+    public static void processFile(File file) {
+        System.out.println("Processing file: " + file.getAbsolutePath());
     }
 }
+
